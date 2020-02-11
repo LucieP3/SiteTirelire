@@ -1,0 +1,62 @@
+﻿@model IEnumerable<SiteTirelire.Models.Produit>
+
+@{
+    ViewBag.Title = "Galerie";
+}
+    <style>
+        .card {
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+            transition: 0.3s;
+            width: 40%;
+            border-radius: 5px;
+        }
+
+            .card:hover {
+                box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+            }
+
+        img {
+            border-radius: 5px 5px 0 0;
+        }
+
+        .container {
+            padding: 2px 16px;
+        }
+    </style>
+
+<br />
+<h2>Nos produits</h2>
+
+<div class="container-fluid">
+
+    <ol class="breadcrumb">
+        <li>@Html.ActionLink("Accueil", "Index", "Home")</li>
+
+        <li>@Html.ActionLink("Catalogue", "Galerie", "Produit")</li>
+
+    </ol>
+</div>
+
+<div>
+
+    @foreach (var item in Model)
+    {
+
+        <div class="card2" style="display:inline-block;margin:20px;">
+            <div class=" gallerieimage">
+                <a href="~/Produit/Details/@item.IdProduit">
+                    <img src="@Url.Content("~/Images/" + item.IdProduit + "_" + item.Chemin)" width="100" height="100" />
+                </a>
+            </div>
+            <div>
+                <div style="width:50%;float:left"> @Html.DisplayFor(modelItem => item.NomProduit)</div>
+                <div style="width:50%;float:right;text-align:right" class="text-danger"> @Html.DisplayFor(modelItem => item.PrixHt)</div>
+            </div>
+
+
+        </div>
+
+
+
+    }
+</div>

@@ -1,0 +1,179 @@
+﻿@model SiteTirelire.Models.Produit
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <div id="photo" class="bloc btn" data-toggle="modal" data-target="#myModal">
+        <img src="@Url.Content("~/Images/" + Model.IdProduit + "_" + Model.Chemin)" width="100" height="100" />
+    </div>
+
+
+
+
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="modal-body">
+
+                    <img src="@Url.Content("~/Images/" + Model.IdProduit + "_" + Model.Chemin)"
+                         style="position:center" />
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <div id="colonne1" class="bloc">
+        <dl class="list-inline">
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.Categorie.Description)
+            </dt>
+
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.Categorie.Description)
+            </dd>
+
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.Fournisseur.Nom)
+            </dt>
+
+            <dd class="col-sm-9">
+                <div class="card-header" role="tab" id="headingTwo2">
+                    <a class="collapsed" data-toggle="collapse" data-parent="#accordionEx" href="#collapseTwo2"
+                       aria-expanded="false" aria-controls="collapseTwo2">
+                        <h5 class="mb-0">
+                            @Html.DisplayFor(model => model.Fournisseur.Nom) <i class="fas fa-angle-down rotate-icon"></i>
+                        </h5>
+                    </a>
+                </div>
+
+                <!-- Card body -->
+                <div id="collapseTwo2" class="collapse" role="tabpanel" aria-labelledby="headingTwo2"
+                     data-parent="#accordionEx">
+                    <div class="card-body">
+                        Partenaire de confiance depuis des années fabricant nos tirelires.
+                    </div>
+                </div>
+            </dd>
+
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.NomProduit)
+            </dt>
+
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.NomProduit)
+            </dd>
+
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.Description)
+            </dt>
+
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.Description)
+            </dd>
+
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.PrixHt)
+            </dt>
+
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.PrixHt)
+            </dd>
+
+
+        </dl>
+    </div>
+    <div id="colonne2" class="bloc">
+        <dl class="dl-horizontal">
+
+
+            <dt class="col-sm-9">
+                @Html.DisplayNameFor(model => model.Largeur)
+            </dt>
+
+            <dd class="col-sm-3">
+                @Html.DisplayFor(model => model.Largeur)
+            </dd>
+
+            <dt class="col-sm-9">
+                @Html.DisplayNameFor(model => model.Hauteur)
+            </dt>
+
+            <dd class="col-sm-3">
+                @Html.DisplayFor(model => model.Hauteur)
+            </dd>
+
+            <dt class="col-sm-9">
+                @Html.DisplayNameFor(model => model.Capacité)
+            </dt>
+
+            <dd class="col-sm-3">
+                @Html.DisplayFor(model => model.Capacité)
+            </dd>
+
+
+
+
+
+        </dl>
+        <br /><br />
+
+
+    </div>
+    <input type="button" class="button button-blue" value="Ajouter au panier"
+           onclick="location.href='@Url.Action("Ajouter", "Panier",new {id=Model.IdProduit })'" />
+
+    @if (Model.Avis.Count() > 0)
+    {
+        <br />
+        <h5>Quelques avis...</h5>
+        <br />
+        <table class="table-bordered">
+
+            <th>Déposé par :</th>
+            <th>Commentaire</th>
+            <th>Note (/5)</th>
+
+
+            @foreach (SiteTirelire.Models.Avi item in Model.Avis)
+            {
+                <tr>
+
+                    <td class="col-lg-3">@item.Client.Nom</td>
+                    <td class="col-lg-10">@item.Commentaire</td>
+                    <td class="col-lg-2">@item.Notation</td>
+
+                </tr>
+            }
+
+
+        </table>
+        <br />
+        <br />
+    }
+
+
+
+
+
+
+
+
+
+
+</div>
+<p>
+    @Html.ActionLink("<- Vers la galerie...", "Galerie")
+</p>

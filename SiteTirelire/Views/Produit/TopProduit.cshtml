@@ -1,0 +1,36 @@
+﻿@model SiteTirelire.Outils.TotalGlobal
+
+@{
+    ViewBag.Title = "Top des produits";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Topp</title>
+</head>
+<body>
+    <h2>Top 5 des produits</h2>
+
+    <br />
+    @for (int i = 0; i < 2; i++)
+    {
+
+
+        @*@Html.DisplayFor(m => m.ListIds[i].QuantitéTotal)*@
+
+
+
+        <p class="text-center"> @Html.DisplayFor(m => m.ListIds[i].NomProduit)</p>
+        <p class="text-center"> 
+            <a href="~/Produit/Details/@Model.ListIds[i].IdProduit">
+            <img src="@Url.Content("~/Images/" + Model.ListIds[i].IdProduit + "_" + Model.ListIds[i].chemin)" width="50" /></a>
+        </p>
+
+
+
+    }
+</body>
+</html>
+
+

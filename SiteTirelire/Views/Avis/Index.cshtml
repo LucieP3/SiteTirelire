@@ -1,0 +1,61 @@
+﻿@model IEnumerable<SiteTirelire.Models.Avi>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Client.Nom)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Produit.NomProduit)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Notation)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Commentaire)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Etape)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Client.Nom)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Produit.NomProduit)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Notation)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Commentaire)
+            </td>
+            <td id="@(item.IdAvis)etat">
+                @(((SiteTirelire.Outils.EtatsAvis)item.Etape).ToString())
+            </td>
+            <td>
+                @Ajax.ActionLink("Approuver", "Approuver", new { id = item.IdAvis }, new AjaxOptions { Confirm = "Voulez-vous vraiment approuver cet avis?", HttpMethod = "GET", InsertionMode = InsertionMode.Replace, UpdateTargetId = item.IdAvis + "etat" }) |
+                @Ajax.ActionLink("Refuser", "Refuser", new { id = item.IdAvis }, new AjaxOptions { Confirm = "Voulez-vous vraiment refuser cet avis?", HttpMethod = "GET", InsertionMode = InsertionMode.Replace, UpdateTargetId = item.IdAvis + "etat" }) |
+            </td>
+        </tr>
+    }
+
+</table>

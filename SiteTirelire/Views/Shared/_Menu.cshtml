@@ -1,0 +1,70 @@
+﻿<div class="navbar-collapse collapse">
+    @*<ul class="nav navbar-nav">
+             <li>@Html.ActionLink("Catalogue", "Galerie", "Produit")</li>
+             <li>@Html.ActionLink("Mes commandes", "ListerCommandes", "Client")</li>
+             <li>@Html.ActionLink("Mon Panier", "Index", "Panier")</li>
+             <li>@Html.ActionLink("About", "About", "Home")</li>
+             <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+
+            <form class="navbar-form navbar-ri" action="/action_page.php">
+                     <div class="form-group">
+                         <input type="text" name="search" class="searchButton" placeholder="Search..">
+                     </div>
+                     <button type="submit" class="btn btn-default">Submit</button>
+                 </form>
+
+
+        @if (((string[])ViewBag.Roles).Contains("Admin"))
+        {
+            <li>@Html.ActionLink("Gestion des produits", "Index", "Produit")</li>
+            <li>@Html.ActionLink("Gestion des commandes", "Index", "Commande")</li>
+            <li>@Html.ActionLink("Gestion des fournisseur", "Index", "Fournisseur")</li>
+        }
+
+        @if (((string[])ViewBag.Roles).Contains("Mod"))
+        {
+            <li>@Html.ActionLink("Gestion des avis", "Index", "Avis")</li>
+        }
+
+        </ul>
+        @Html.Partial("_LoginPartial")*@
+
+    <ul class="nav navbar-nav">
+        <li>@Html.ActionLink("Catalogue", "Galerie", "Produit")</li>
+        <li>@Html.ActionLink("À propos de nous...", "About", "Home")</li>
+        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+        <li>@Html.ActionLink("Top des produits", "TopProduit", "Produit")</li>
+
+        @if (((string[])ViewBag.Roles).Contains("admin"))
+        {
+            <li>@Html.ActionLink("Gestion des produits", "Index", "Produit")</li>
+            <li>@Html.ActionLink("Gestion des commandes", "Lister", "Commande")</li>
+
+        }
+
+        @if (((string[])ViewBag.Roles).Contains("mod"))
+        {
+            <li>@Html.ActionLink("Gestion des avis", "Index", "Avis")</li>
+        }
+
+
+        @if (((string[])ViewBag.Roles).Contains("user"))
+        {
+
+            <li>@Html.ActionLink("Mon Panier", "Index", "Panier")</li>
+
+        }
+
+
+
+
+    </ul>
+    @Html.Partial("_LoginPartial")
+
+
+
+
+
+
+</div>
+

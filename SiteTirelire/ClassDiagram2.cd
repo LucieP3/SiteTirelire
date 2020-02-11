@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="SiteTirelire.Models.Avi">
+    <Position X="0.5" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABACABAAAEAAAAAAAAgAAAAAAAAAAAABAAAABAAABAQ=</HashCode>
+      <FileName>Models\Avi.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Produit" />
+      <Property Name="Client" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="SiteTirelire.Models.Categorie">
+    <Position X="13" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAAEAAAgAAAAAAAAAAAAAAAAAAABAAAAAAAAAAQ=</HashCode>
+      <FileName>Models\Categorie.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SiteTirelire.Models.Client">
+    <Position X="5" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAAAACAABAAAACAARAAAIAA=</HashCode>
+      <FileName>Models\Client.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SiteTirelire.Models.Commande">
+    <Position X="2.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACAAAAAAAggAAAAAAAACAAAAAAAAAIABQAAAAQ=</HashCode>
+      <FileName>Models\Commande.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Client" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="SiteTirelire.Models.Fournisseur">
+    <Position X="8.25" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAAAAAAAAAAAAAAAAACAAAAAQAAAAQAAAAAQ=</HashCode>
+      <FileName>Models\Fournisseur.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SiteTirelire.Models.LigneCommande">
+    <Position X="4.5" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIACAACAAAAAABAAAAAAAAIAAAAAAAAAAAAAAAAAJIA=</HashCode>
+      <FileName>Models\LigneCommande.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Commande" />
+      <Property Name="Produit" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="SiteTirelire.Models.Produit">
+    <Position X="7.25" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAAAAAAgABCgAAAAAAABgYAABAASAAIAAAAABQA=</HashCode>
+      <FileName>Models\Produit.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Categorie" />
+      <Property Name="Fournisseur" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="SiteTirelire.Models.Role">
+    <Position X="10.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAE=</HashCode>
+      <FileName>Models\Role.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

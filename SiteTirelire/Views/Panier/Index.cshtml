@@ -1,0 +1,63 @@
+﻿@model SiteTirelire.Models.Commande
+@using SiteTirelire.Models
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Mon panier</h2>
+
+<script>
+
+    $(function () { majTotal(); })
+
+    function majTotal() {
+        $.ajax({
+        type: "GET",
+            url: '@Url.Action("calculerTotal", "Panier")',
+            success: function (data) {
+            $('#total').html(data);
+        }
+    });
+
+    }
+</script>
+
+<table>
+
+    <tr class="text-center">
+        <th class="col-lg-1 text-center"></th>
+        <th class="col-lg-2 text-center">Produit</th>
+        <th class="col-lg-2 text-center">Fournisseur</th>
+        <th class="col-lg-2 text-center">Prix</th>
+        <th class="col-lg-4 text-center">Quantité / Montant</th>
+        <th class="col-lg-1 text-center"></th>
+        <th class="col-lg-1 text-center"></th>
+    </tr>
+    @foreach (var detail in Model.LigneCommandes)
+    {
+        <tr id="@("r"+detail.IdProduit)" class="text-center">
+            <td class="col-lg-1">@Ajax.ActionLink(" ", "Supprimer", new { id = detail.IdProduit }, new AjaxOptions { HttpMethod = "GET", OnSuccess = "majTotal", InsertionMode = InsertionMode.Replace, UpdateTargetId = "r" + detail.IdProduit }, new { @class = "glyphicon glyphicon-remove" })</td>
+            <td class="col-lg-2">@detail.Produit.NomProduit </td>
+            <td class="col-lg-2">@detail.Produit.Fournisseur.Nom</td>
+            <td class="col-lg-2" id="@("p" + detail.IdProduit)">@detail.Produit.PrixHt</td>
+            <td class="col-lg-4 text-center" id="@("q" + detail.IdProduit)"><span>@detail.Quantité         @(detail.Produit.PrixHt * detail.Quantité)</span></td>
+            <td class="col-lg-1">@Ajax.ActionLink(" ", "Incrementer", new { id = detail.IdProduit }, new AjaxOptions { HttpMethod = "GET", OnSuccess = "majTotal", InsertionMode = InsertionMode.Replace, UpdateTargetId = "q" + detail.IdProduit }, new { @class = "glyphicon glyphicon-plus" })</td>
+            <td class="col-lg-1">@Ajax.ActionLink(" ", "Decrementer", new { id = detail.IdProduit }, new AjaxOptions { HttpMethod = "GET", OnSuccess = "majTotal", InsertionMode = InsertionMode.Replace, UpdateTargetId = "q" + detail.IdProduit }, new { @class = "glyphicon glyphicon-minus" })</td>
+        </tr>
+
+    }
+
+
+</table>
+<br />
+<div id="total" class="text-right"></div>
+<br />
+<div>
+    <input type="button" value="Passer commande"
+           onclick="location.href='@Url.Action("Confirmation", "Commande")'" />
+</div>
+<br />
+
+<p>
+    @Html.ActionLink("Retour à la galerie", "Galerie", "Produit")
+</p>

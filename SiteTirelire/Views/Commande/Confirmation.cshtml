@@ -1,0 +1,83 @@
+﻿@model SiteTirelire.Models.Commande
+@{
+    ViewBag.Title = "Confirmation";
+}
+<h2>Confirmation</h2>
+
+<div>
+    <h4>Commande</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        
+        <dd>
+            @Html.DisplayFor(model => model.Client.Nom)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Client.Nom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Client.Prénom)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Client.Prénom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Client.Adresse)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Client.Adresse)
+        </dt>
+
+
+       
+
+        @*<dt>
+                @Html.DisplayNameFor(model => model.StatutCommande)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.StatutCommande)
+            </dd>*@
+
+    </dl>
+</div>
+<div>
+    <table>
+
+        <tr class="text-center">
+            <th class="col-lg-2 text-center">Produit</th>
+            <th class="col-lg-2 text-center">Prix</th>
+            <th class="col-lg-4 text-center">Fournisseur</th>
+            <th class="col-lg-4 text-center">Quantité</th>
+            <th class="col-lg-1 text-center">Montant</th>
+        </tr>
+        @foreach (var detail in Model.LigneCommandes)
+        {
+            <tr class="text-center">
+                <td class="col-lg-2">@detail.Produit.NomProduit</td>
+                <td class="col-lg-2">@detail.Produit.PrixHt</td>
+                <td class="col-lg-2">@detail.Produit.Fournisseur.Nom</td>
+                <td class="col-lg-2">@detail.Quantité</td>
+                <td class="col-lg-2">@(detail.Produit.PrixHt * detail.Quantité)</td>
+            </tr>
+
+        }
+
+
+    </table>
+</div>
+
+<br />
+<div class="text-right">Montant de la commande : @ViewBag.Total</div>
+<br />
+<br />
+<p>
+    <input type="button" value="Valider cette commande"
+           onclick="location.href='@Url.Action("Validation", "Commande")'" />
+
+</p>

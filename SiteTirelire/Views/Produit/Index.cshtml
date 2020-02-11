@@ -1,0 +1,94 @@
+﻿@model IEnumerable<SiteTirelire.Models.Produit>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("+ Ajouter un produit", "Create")
+</p>
+<table class="table">
+    <tr class="table2">
+        <th scope="col">
+            @Html.DisplayNameFor(model => model.Categorie.Description)
+        </th>
+        <th scope="col">
+            @Html.DisplayNameFor(model => model.Fournisseur.Nom)
+        </th>
+        <th scope="col">
+            @Html.DisplayNameFor(model => model.NomProduit)
+        </th>
+        <th scope="col">
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th scope="col">
+            @Html.DisplayNameFor(model => model.PrixHt)
+        </th>
+
+        <th scope="col">
+            @Html.DisplayNameFor(model => model.Largeur)
+        </th>
+        <th scope="col">
+            @Html.DisplayNameFor(model => model.Hauteur)
+        </th>
+        <th scope="col">
+            @Html.DisplayNameFor(model => model.Capacité)
+        </th>
+        <th scope="col">
+            @Html.DisplayNameFor(model => model.Stock)
+        </th>
+        <th scope="col">
+
+        </th>
+        <th scope="col">
+           
+        </th>
+
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Categorie.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Fournisseur.Nom)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NomProduit)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PrixHt)
+            </td>
+          
+            <td>
+                @Html.DisplayFor(modelItem => item.Largeur)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Hauteur)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Capacité)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Stock)
+            </td>
+            <td>
+                
+                <img src="@Url.Content("~/Images/" + item.IdProduit + "_" + item.Chemin)" width="50" height="50" />
+            </td>
+            <td>
+                @Html.ActionLink("Modif.", "Edit", new { id = item.IdProduit }) |
+                @Html.ActionLink("Details", "Details", new { id = item.IdProduit }) |
+                @Html.ActionLink("Suppr.", "Delete", new { id = item.IdProduit })
+            </td>
+        </tr>
+    }
+
+</table>

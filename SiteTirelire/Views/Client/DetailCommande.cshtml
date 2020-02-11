@@ -1,0 +1,66 @@
+﻿@model SiteTirelire.Models.Commande
+
+
+@using SiteTirelire.Models
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Ma commande</h2>
+
+<script>
+
+    @*$(function () { majTotal(); })
+
+    function majTotal() {
+        $.ajax({
+        type: "GET",
+            url: '@Url.Action("calculerTotal", "Panier")',
+            success: function (data) {
+            $('#total').html(data);
+        }
+    });
+
+    }*@
+</script>
+
+<table>
+
+    <tr class="text-center">
+
+        <th class="col-lg-2 text-center">Produit</th>
+        <th></th>
+        <th class="col-lg-2 text-center">Fournisseur</th>
+        <th class="col-lg-2 text-center">Prix</th>
+        <th class="col-lg-4 text-center">Quantité / Montant</th>
+
+    </tr>
+    @foreach (var detail in Model.LigneCommandes)
+    {
+        <tr class="text-center">
+            <td class="col-lg-2">@detail.Produit.NomProduit</td>
+            <td>
+                @if (detail.Produit.Avis.Where(a => a.IdClient == ((Client)Session["Client"]).IdClient).Count() == 0)
+                {
+                    <span>@Html.ActionLink("Déposer un avis", "DeposerAvis", new { id = detail.Produit.IdProduit })</span>
+                }
+            </td>
+            <td class="col-lg-2">@detail.Produit.Fournisseur.Nom</td>
+            <td class="col-lg-2">@detail.Produit.PrixHt</td>
+            <td class="col-lg-4 text-center"><span>@detail.Quantité         @(detail.Produit.PrixHt * detail.Quantité)</span></td>
+        </tr>
+
+    }
+
+
+</table>
+<br />
+<div id="total" class="text-right">
+
+</div>
+<br />
+<br />
+
+<p>
+    @Html.ActionLink("Retour à mes commandes", "ListerCommandes", "Client")
+</p>
